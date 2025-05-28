@@ -6,11 +6,23 @@
   <style>
     body {
       font-family: 'Prompt', sans-serif;
-      background: #fff8e1;
+      background: #f8f4e1;
       text-align: center;
       padding: 40px;
-      color: #6d4c41;
+      color: #644a31;
     }
+
+    .slide-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+
+    .slide-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     #quote-box {
       margin: auto;
       padding: 30px;
@@ -19,15 +31,15 @@
       background-color: #d7ccc8;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       font-size: 24px;
-      font-style: italic;
       min-height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     button {
       margin-top: 30px;
-      background-color: #ffca28;
+      background-color: #f0ca41;
       border: none;
       border-radius: 12px;
       padding: 15px 30px;
@@ -37,6 +49,7 @@
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: background-color 0.3s ease;
     }
+
     button:hover {
       background-color: #ffd54f;
     }
@@ -44,9 +57,9 @@
 </head>
 <body>
 
-  <h1>คำพูดเด็ด ๆ จากคณะกรรมการ</h1>
-  <div id="quote-box">กดปุ่มข้างล่างเพื่อสุ่มคำคม</div>
-  <button onclick="showQuote()">สุ่มคำคมใหม่</button>
+  <h1 class="slide-in">แรงบันดาลใจจากพวกเรา</h1>
+  <div id="quote-box" class="slide-in">กดปุ่มข้างล่างเพื่อสุ่มคำคม</div>
+  <button onclick="showQuote()" class="slide-in">สุ่มคำคมใหม่</button>
 
   <script>
     const quotes = [
@@ -64,6 +77,12 @@
       const randomIndex = Math.floor(Math.random() * quotes.length);
       document.getElementById('quote-box').textContent = quotes[randomIndex];
     }
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.slide-in').forEach(el => {
+        el.classList.add('show');
+      });
+    });
   </script>
 
 </body>
